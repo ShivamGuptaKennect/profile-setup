@@ -4,21 +4,24 @@ const express = require('express');
 const logger = require('./logger/logger');
 
 // Checking all the config are defined
+try {
+    console.log("everything imported, stared configuration")
+    // express app instance  created.
+    const app = express();
 
-// express app instance  created.
-const app = express();
+    // Making all the routes available
+    require('./startup/routes')(app);
 
-// Making all the routes available
-require('./startup/routes')(app);
+    // Making database connection
+    require('./startup/db')();
 
-// Making database connection
-require('./startup/db')();
+    // Getting port to bind on
+    const port = process.env.PORT || 3000;
 
-// Getting port to bind on
-const port = process.env.PORT || 3000;
+    // creating server and listening on port
+    app.listen(port, () => logger.info(`Listening on port ${port}...`));
 
-// creating server and listening on port
-app.listen(port, () => logger.info(`Listening on port ${port}...`));
-
-
+} catch (error) {
+    console.error(error)
+}
 // Thanks!!

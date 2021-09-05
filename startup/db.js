@@ -6,9 +6,12 @@ module.exports = function () {
     mongoose.set('useNewUrlParser', true);
     mongoose.set('useFindAndModify', false);
     mongoose.set('useCreateIndex', true);
+    mongoose.set('useUnifiedTopology', true);
+
 
     // Database connection
-    mongoose.connect('mongodb://localhost/template')
-        .then(() => logger.info('Connected to MongoDB...'));
+    mongoose.connect('mongodb://192.168.0.12:27018/profileapi')
+        .then(() => logger.info('Connected to MongoDB...'))
+        .catch((error) => console.error(error));
 
 };
