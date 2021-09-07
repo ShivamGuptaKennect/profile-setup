@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  mongodb:
+    image: bitnami/mongodb
+    ports:
+      - "27018:27017"
+
+  profileapi:
+    depends_on:
+      - mongodb
+    ports:
+      - "3000:3000"
+    image: profileapi
+    build: .

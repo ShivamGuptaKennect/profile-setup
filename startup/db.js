@@ -10,8 +10,11 @@ module.exports = function () {
 
 
     // Database connection
-    mongoose.connect('mongodb://192.168.0.12:27018/profileapi')
-        .then(() => logger.info('Connected to MongoDB...'))
+    mongoose.connect('mongodb://mongodb/profileapi')
+        .then(() => {
+            logger.info('Connected to MongoDB...')
+            console.log('Connected to MongoDB...')
+        })
         .catch((error) => console.error(error));
 
 };
